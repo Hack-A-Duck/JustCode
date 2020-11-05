@@ -19,6 +19,7 @@ connect.then((db)=>{
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var productRouter = require('./routes/productRouter');
 
 var app = express();
 app.disable("x-powered-by");
@@ -46,6 +47,8 @@ app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+app.use('/products',productRouter);
 
 
 
