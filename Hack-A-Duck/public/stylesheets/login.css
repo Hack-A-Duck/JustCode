@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap');
+*, html,body{
+	padding:0px;
+	margin:0px;
+	box-sizing:border-box;
+	font-family:'Poppins', sans-serif;
+}
+body{
+	background-color:#fff;
+	width:100%;
+	min-height:100vh;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+.container{
+	position:relative;
+	width:100%;
+	height:100vh;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+.container .background{
+	position:absolute;
+	width:100%;
+	height:100vh;
+	background-image:url(https://1.bp.blogspot.com/-_7KlN39_b1g/Xxyy5MvOyLI/AAAAAAAAALo/RO8QiJ_5t4YXcd8WnhX2_qI0wVk7zc9MACNcBGAsYHQ/s2048/image17.jpg);
+	background-size:cover;
+	filter:brightness(.4);
+	z-index:-1;
+}
+.container .Form-Login{
+	width:350px;
+	min-height:500px;
+	background-color:#fff;
+	padding:20px;
+	box-shadow:0px 0px 10px rgba(0,0,0,.5);
+}
+.container .Form-Login h1{
+	display:inline-block;
+	position:relative;
+	background-color: #0984e3;
+	width: 100%;
+	text-align: center;
+	font-size:40px;
+	color:white;
+	margin-bottom:20px;
+	font-family: 'Noto Sans', sans-serif;
+}
+.container .Form-Login a{
+	font-size:14px;
+	color:#106ea9;
+	text-decoration:none;
+}
+.container .Form-Login a:hover{
+	text-decoration:underline;
+}
+.container .Form-Login h1:before{
+	content:'';
+	position:absolute;
+	bottom:-5px;
+	
+	left:0%;
+	background-color:white;
+	width:100%;
+	height:4px;
+	border-radius:25px;
+	transition:1s;
+}
+.container .Form-Login div{
+	position:relative;
+	margin:25px 0px 25px 0px;
+}
+.container .Form-Login div input{
+	width:300px;
+	height:40px;
+	border:none;
+	outline:none;
+	border-bottom:2px solid #888;
+	transition:.5s;
+}
+.container .Form-Login div input:focus ~ label,
+.container .Form-Login div input:valid ~ label{
+	top:-7px;
+	font-size:12px;
+	color:#eb3b5a;
+}
+.container .Form-Login div input:valid{
+	border-bottom:2px solid #2d98da;
+}
+.container .Form-Login div input:valid ~ label{
+	color:#2d98da;
+}
+.container .Form-Login div button{
+	position:relative;
+	width:120px;
+	height:45px;
+	border:none;
+	outline:none;
+	background-color:#0984e3;
+	color:#fff;
+	font-weight:bold;
+	cursor:pointer;
+	font-size:18px;
+	text-align:center;
+	z-index:1;
+}
+.container .Form-Login .password span{
+	position:absolute;
+	display:inline-block;
+	width:30px;
+	height:100%;
+	right:0px;
+	line-height:45px;
+ 	color:#777;
+ 	cursor:pointer;
+}
+.container .Form-Login div button:before{
+	content:'';
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:0%;
+	height:100%;
+	background-color:#74b9ff;
+	z-index:-1;
+	transition:1s;
+}
+.container .Form-Login div button:hover:before{
+	width:100%;	
+}
+.container .Form-Login div label{
+	position:absolute;
+	left:0px;
+	top:10px;
+	color:#777;
+	pointer-events:none;
+	transition:.5s;
+}
+
+@media (max-width: 355px){
+	.container .Form-Login{
+		width:100%;
+		min-height:470px;
+		margin:5px;
+		padding:10px;
+	}
+	.container .Form-Login div input{
+		width:100%;
+	}
+	.container .Form-Login h1{
+		font-size:35px;
+	}
+	.container .Form-Login .password span{
+		right:-10px;
+	}	
+}
