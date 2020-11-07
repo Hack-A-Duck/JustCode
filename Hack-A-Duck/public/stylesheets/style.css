@@ -1,11 +1,8 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
 
-a {
+
+/*a {
   color: #00B7FF !important;
-}
+}*/
 *{
   Font-family: Nunito,Arial;
 }
@@ -56,6 +53,6 @@ a {
   background-color: #5BC8FF  !important;
 }
 
-.btn-primary a{
+/*.btn-primary a{
   color: white  !important;
-}
+}*/
