@@ -4,7 +4,7 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00B7FF !important;
 }
 *{
   Font-family: Nunito,Arial;
@@ -50,4 +50,12 @@ a {
 {
   clear:left;
   text-align:center;
+}
+
+.btn-primary {
+  background-color: #5BC8FF  !important;
+}
+
+.btn-primary a{
+  color: white  !important;
 }
