@@ -1,0 +1,33 @@
+<%- include('partials/header') %>
+
+
+
+<div class="wrapper">
+    <form action="/login" method="POST">
+        <div class="title">
+            Login
+        </div>
+        <div class="text-center inputfield terms" style="color: red;">
+            <p></p><%= message %>
+        </div>
+        <div class="form">
+
+            <div class="inputfield">
+                <label>Email Address</label>
+                <input type="email" class="input" name='username' required='required'>
+            </div>
+            <div class="inputfield">
+                <label>Password</label>
+                <input type="password" class="input" name="password" required='required'>
+            </div>
+            <div class="inputfield">
+                <input type="submit" value="Login" class="btn">
+            </div>
+        </div>
+    </form>
+    <div class="text-center inputfield terms" style="color: #454646;">
+        <p></p>Do not have an account? <a href="/register" style="color: black;">Register<p></a>
+    </div>
+</div>
+
+<%- include('partials/footer') %>
