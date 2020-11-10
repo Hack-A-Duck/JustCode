@@ -1,0 +1,57 @@
+<%- include('partials/header') %>
+
+
+<div class="wrapper">
+
+    <form action="/adminDashboard/<%= user._id %>" method="POST">
+        <div class="title">
+            Donor Details
+        </div>
+
+        <div class=" form">
+
+            <div class="inputfield">
+                <label>Name</label>
+                <input type="text" class="input" name="name" required='required' value="<%= user.name %>" readonly>
+            </div>
+            <div class="inputfield">
+                <label>Email Address</label>
+                <input type="email" class="input" name='username' required='required' value="<%= user.username %>"
+                    readonly>
+            </div>
+            <div class="inputfield">
+                <label>Phone Number</label>
+                <input type="text" class="input" name='phone' required='required' value="<%= user.phone %>" readonly>
+            </div>
+            <div class="inputfield">
+                <label>Gender</label>
+                <input type="text" class="input" name='gender' required='required' value="<%= user.selected %>"
+                    readonly>
+            </div>
+            <div class="inputfield">
+                <label>Donation type</label>
+                <input type="text" class="input" name='gender' required='required' value="<%= user.donation_type %>"
+                    readonly>
+            </div>
+            <div class="inputfield">
+                <label>Address</label>
+                <textarea class="textarea" name="address" required="required" readonly><%= user.address %></textarea>
+            </div>
+            <div class="inputfield">
+                <label>Postal Code</label>
+                <input type="text" class="input" name="postal" required='required' value="<%= user.postal %>" readonly>
+            </div>
+            <div class="inputfield">
+                <label>aadhar card image</label>
+                <a href="/uploads/<%= user.image %>" download="adhar<%= user.name %>"><%= user.name %> aadhar</a>
+            </div>
+            <% if(user.verify==false && admin=='5fa95c925b37a5b0f477eee5'){ %>
+            <div class="inputfield">
+                <input type="submit" value="Verify donor" class="btn">
+            </div>
+            <% } %>
+        </div>
+    </form>
+</div>
+
+<%- include('partials/footer') %>

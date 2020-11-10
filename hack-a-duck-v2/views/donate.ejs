@@ -1,0 +1,64 @@
+<%- include('partials/header') %>
+
+
+<div class="wrapper">
+
+    <form action="/donate" method="POST" enctype="multipart/form-data">
+        <div class="title">
+            Donation form
+        </div>
+
+        <div class=" form">
+
+            <div class="inputfield">
+                <label>Name</label>
+                <input type="text" class="input" name="name" required='required' value="<%= userDetails.name %>"
+                    readonly>
+            </div>
+            <div class="inputfield">
+                <label>Email Address</label>
+                <input type="email" class="input" name='username' required='required'
+                    value="<%= userDetails.username %>" readonly>
+            </div>
+            <div class="inputfield">
+                <label>Phone Number</label>
+                <input type="text" class="input" name='phone' required='required' value="<%= userDetails.phone %>"
+                    readonly>
+            </div>
+            <div class="inputfield">
+                <label>Gender</label>
+                <input type="text" class="input" name='gender' required='required' value="<%= userDetails.selected %>"
+                    readonly>
+            </div>
+            <div class="inputfield">
+                <label>Donate type</label>
+                <div class="custom_select">
+                    <select name='selected_donation' required='required'>
+                        <option value="" name='initial'>Select</option>
+                        <option value="toys" name='male'>Toys</option>
+                        <option value="clothes" name='select'>Clothes</option>
+                        <option value="sweets" name='select'>Sweets</option>
+                        <option value="Books" name='select'>Books and stationery</option>
+                    </select>
+                </div>
+            </div>
+            <div class="inputfield">
+                <label>Address</label>
+                <textarea class="textarea" name="address" required="required"></textarea>
+            </div>
+            <div class="inputfield">
+                <label>Postal Code</label>
+                <input type="text" class="input" name="postal" required='required'>
+            </div>
+            <div class="inputfield">
+                <label>aadhar card image</label>
+                <input type="file" class="input" name='file' required='required'>
+            </div>
+            <div class="inputfield">
+                <input type="submit" value="Submit details" class="btn">
+            </div>
+        </div>
+    </form>
+</div>
+
+<%- include('partials/footer') %>

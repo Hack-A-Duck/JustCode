@@ -1,0 +1,77 @@
+<%- include('partials/header') %>
+
+
+<div class="wrapper">
+
+    <form action="/register" method="POST">
+        <div class="title">
+            Registration Form
+        </div>
+        <% const rang = message === 'Successfully registered'?'hara':'lal' %>
+        <% if(rang == 'lal'){ %>
+        <div class="text-center inputfield terms" style="color: red;">
+            <% if(message === ''){ %>
+            <p></p>
+            <% } else {%>
+            <p></p><%= message %>
+            <% } %>
+
+        </div>
+        <% }else{ %>
+        <div class="text-center inputfield terms" style="color: green;">
+            <p></p><%= message %>
+        </div>
+        <% } %>
+        <div class=" form">
+
+            <div class="inputfield">
+                <label>Name</label>
+                <input type="text" class="input" name="name" required='required'>
+            </div>
+            <div class="inputfield">
+                <label>Email Address</label>
+                <input type="email" class="input" name='username' required='required'>
+            </div>
+            <div class="inputfield">
+                <label>Password</label>
+                <input type="password" class="input" name="password" required='required'>
+            </div>
+            <div class="inputfield">
+                <label>Confirm Password</label>
+                <input type="password" class="input" name="confirm_password" required='required'>
+            </div>
+            <div class="inputfield">
+                <label>Gender</label>
+                <div class="custom_select">
+                    <select name='selected' required='required'>
+                        <option value="" name='initial'>Select</option>
+                        <option value="male" name='male'>Male</option>
+                        <option value="female" name='select'>Female</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="inputfield">
+                <label>Phone Number</label>
+                <input type="text" class="input" name='phone' required='required'>
+            </div>
+            <div class="inputfield terms">
+                <label class="check">
+                    <input type="checkbox" required='required'>
+                    <span class="checkmark"></span>
+                </label>
+                <p>Agreed to terms and conditions</p>
+            </div>
+            <div class="inputfield">
+                <input type="submit" value="Register" class="btn">
+            </div>
+        </div>
+    </form>
+
+    <div class="text-center inputfield terms" style="color: #454646;">
+        <p></p>Already have an account? <a href="/login" style="color: black;">Sign
+            in</a>
+    </div>
+</div>
+
+<%- include('partials/footer') %>
