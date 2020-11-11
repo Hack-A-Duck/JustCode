@@ -288,8 +288,10 @@ app.post("/login", passport.authenticate('local', { failWithError: true }), func
 }, function (err, req, res, next) {
     return res.render('login', { message: 'Username or password is incorrect' });
 });
-
-const PORT = 3000;
-app.listen(PORT, function () {
-    console.log(`Server started on port ${PORT}`);
+let port = process.env.PORT;
+if (port == null || port == "") {
+    port = 3000;
+}
+app.listen(port, function () {
+    console.log(`Server started on port ${port}`);
 });
