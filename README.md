@@ -2,13 +2,16 @@
 
 ## Theme 3
 
-## TeamName - JustCode
+## Team Name - JustCode
 
 ## Team Participants
 
  Vivek Pattanayak(Team Leader).
+
  Saketh Kumar Pabba.
+
  Aditya Kumar Dubey.
+
  Sayan Maiti.
 
 ## setup guide
@@ -48,4 +51,8 @@ after updating the above command open the terminal and type
 node app.js
 ```
 
-Now,open google chrome and enter localhost:3000 to navigate the site
+Now,open google chrome and enter localhost:3000 to navigate the site.
+
+## Deployment Link
+
+xxxxxxxxxxxxxxxxxxxxxxxxxx
