@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(session({
-    secret: process.env.SECRET1='12345-67890-09876-54321',
+    secret: process.env.SECRET1,
     resave: false,
     saveUninitialized: false
 }));
