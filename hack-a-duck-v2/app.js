@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(session({
-    secret: process.env.SECRET1,
+    secret: 'tubahutbadawalahai.',
     resave: false,
     saveUninitialized: false
 }));
@@ -30,7 +30,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect(process.env.DBCLUSTER, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://saketh-admin:test123@cluster0.auzn1.mongodb.net/membersDB', { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.set("useCreateIndex", true);
 
 var storage = multer.diskStorage({
@@ -59,7 +59,8 @@ const donorSchema = new mongoose.Schema({
     postal: String,
     donation_type: String,
     image: String,
-    verify: false
+    verify: false,
+    rejected: false
 });
 userSchema.plugin(passportLocalMongoose);
 const User = new mongoose.model("User", userSchema);
@@ -168,6 +169,24 @@ app.post('/adminDashboard/:id', function (req, res) {
         res.redirect('/login');
     }
 });
+app.post('/rejected/:id', function (req, res) {
+    if (req.isAuthenticated()) {
+        const id = req.params.id;
+        Donor.findOne({ _id: id }, function (err, foundUser) {
+            if (err) {
+                console.log(err);
+            } else {
+                if (foundUser) {
+                    foundUser.rejected = true;
+                    foundUser.save();
+                    res.redirect('/adminDashboard');
+                }
+            }
+        });
+    } else {
+        res.redirect('/login');
+    }
+});
 app.post('/donate', uploads, function (req, res, next) {
     if (req.isAuthenticated()) {
         const id = req.user.username;
@@ -185,7 +204,8 @@ app.post('/donate', uploads, function (req, res, next) {
                         postal: req.body.postal,
                         donation_type: req.body.selected_donation,
                         image: req.file.filename,
-                        verify: false
+                        verify: false,
+                        rejected: false
                     });
                     newDonor.save();
                     res.render('confirmation', { name: req.user.name });
@@ -216,8 +236,8 @@ app.post("/register", function (req, res) {
         if (req.body.password.length < 6) {
             res.render('register', { message: 'Password must be atleast 6 characters long' });
 
-        } else if (req.body.phone.length < 10 || req.body.phone.length > 10) {
-            res.render('register', { message: 'Please enter a valid phone number and try again' });
+        } else if (req.body.phone.length < 13 || req.body.phone.length > 13) {
+            res.render('register', { message: 'Please enter a valid phone number with country code' });
         }
         else {
             User.findOne({ username: req.body.username }, function (err, foundUser) {
@@ -258,7 +278,7 @@ app.post("/login", passport.authenticate('local', { failWithError: true }), func
                     console.log(err);
                 } else {
                     if (foundUser) {
-                        if (foundUser._id == process.env.ADMINID) {
+                        if (foundUser._id == '5fab88c7c9809d9c9c6870fb') {
                             passport.authenticate("local")(req, res, function () {
 
                                 if (err) {

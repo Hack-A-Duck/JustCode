@@ -1,9 +1,14 @@
 <%- include('partials/header') %>
 
-
+<nav class="navbar navbar-dark bg-primary">
+    <a class="navbar-brand">CROWDFUNDS-ADMIN</a>
+    <form action="<%= admin=='5fab88c7c9809d9c9c6870fb'?'/adminDashboard':'/dashboard' %>" class="form-inline">
+        <button class="btn btn-dark my-2 my-sm-0" type="submit">Home</button>
+    </form>
+</nav>
 <div class="wrapper">
 
-    <form action="/adminDashboard/<%= user._id %>" method="POST">
+    <form method="POST">
         <div class="title">
             Donor Details
         </div>
@@ -45,9 +50,25 @@
                 <label>aadhar card image</label>
                 <a href="/uploads/<%= user.image %>" download="adhar<%= user.name %>"><%= user.name %> aadhar</a>
             </div>
-            <% if(user.verify==false && admin=='5fab88c7c9809d9c9c6870fb'){ %>
+            <% if(admin!='5fab88c7c9809d9c9c6870fb'){ %>
+            <div class="text-center inputfield terms" style="color: black;">
+                <% if(user.rejected==true){ %>
+                <p></p>Your form was rejected please contact the admin
+                <% } %>
+                <% if(user.rejected==false && user.verify==false){ %>
+                <p></p>Your form is under the process of verification
+                <% } %>
+                <% if(user.verify==true){ %>
+                <p></p>Your form has been verified, the admin will contact you shortly
+                <% } %>
+            </div>
+            <% } %>
+            <% if(user.verify==false && user.rejected==false && admin=='5fab88c7c9809d9c9c6870fb'){ %>
             <div class="inputfield">
-                <input type="submit" value="Verify donor" class="btn">
+                <input type="submit" value="Verify donor" class="btn" formaction="/adminDashboard/<%= user._id %>">
+            </div>
+            <div class="inputfield" style="background-color: red!important;">
+                <input type="submit" value="Reject donor" class="btn" formaction="/rejected/<%= user._id %>">
             </div>
             <% } %>
         </div>

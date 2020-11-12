@@ -76,7 +76,7 @@
                                         Donation <%= i+1 %></a></td>
 
                                 <td><span
-                                        class=" status text-<%= user[i].verify==false?'warning':'success' %>">&bull;</span><%= user[i].verify==false?'NO':'YES' %>
+                                        class=" status text-<%= user[i].verify==false?(user[i].rejected==false?'warning':'danger'):'success' %>">&bull;</span><%= user[i].verify==false?(user[i].rejected==false?'pending':'rejected'):'verified' %>
                                 </td>
                             </tr>
                             <% } %>
