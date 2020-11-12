@@ -22,7 +22,6 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(session({
-
     secret: 'tubahutbadawalahai.',
     resave: false,
     saveUninitialized: false
@@ -83,136 +82,173 @@ app.get('/login', function (req, res) {
 });
 app.get("/logout", function (req, res) {
     req.logout();
-    res.redirect("/");
+    res.redirect("/login");
 });
 app.get("/dashboard", function (req, res) {
     if (req.isAuthenticated()) {
-        Donor.find({ username: req.user.username }, function (err, found) {
-            if (err) {
-                console.log(err);
-            } else {
-                if (found) {
-                    res.render('dashboard', { user: found, name: req.user.name })
+        if (req.user._id != '5fab88c7c9809d9c9c6870fb') {
+            Donor.find({ username: req.user.username }, function (err, found) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    if (found) {
+                        res.render('dashboard', { user: found, name: req.user.name })
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            res.redirect('/logout');
+        }
+
     } else {
         res.redirect("/login");
     }
 });
 app.get('/donate', function (req, res) {
     if (req.isAuthenticated()) {
-        res.render('donate', { userDetails: req.user });
+        if (req.user._id != '5fab88c7c9809d9c9c6870fb') {
+            res.render('donate', { userDetails: req.user });
+        } else {
+            res.redirect('/logout');
+        }
     } else {
         res.redirect('/login');
     }
 });
 app.get('/userDonations', function (req, res) {
     if (req.isAuthenticated()) {
-        Donor.find({ username: req.user.username }, function (err, found) {
-            if (err) {
-                console.log(err);
-            } else {
-                if (found) {
-                    res.render('yourdonation', { user: found });
+        if (req.user._id != '5fab88c7c9809d9c9c6870fb') {
+            Donor.find({ username: req.user.username }, function (err, found) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    if (found) {
+                        res.render('yourdonation', { user: found });
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            res.redirect('/logout');
+        }
+
     } else {
         res.redirect("/login");
     }
 });
 app.get('/adminDashboard', function (req, res) {
     if (req.isAuthenticated()) {
-        Donor.find({}, function (err, foundUsers) {
-            if (err) {
-                console.log(err);
-            } else {
-                res.render('admin', { users: foundUsers });
-            }
-        });
-
+        if (req.user._id == '5fab88c7c9809d9c9c6870fb') {
+            Donor.find({}, function (err, foundUsers) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.render('admin', { users: foundUsers });
+                }
+            });
+        } else {
+            res.redirect('/logout');
+        }
     } else {
         res.redirect('/login');
     }
 });
 app.get('/adminDashboard/:id', function (req, res) {
     if (req.isAuthenticated()) {
-        const id = req.params.id;
-        Donor.findOne({ _id: id }, function (err, foundUser) {
-            if (err) {
-                console.log(err);
-            } else {
-                if (foundUser) {
-                    res.render('donorDetails', { user: foundUser, admin: req.user._id });
+        if (req.user._id == '5fab88c7c9809d9c9c6870fb') {
+            const id = req.params.id;
+            Donor.findOne({ _id: id }, function (err, foundUser) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    if (foundUser) {
+                        res.render('donorDetails', { user: foundUser, admin: req.user._id });
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            res.redirect('/logout');
+        }
+
     } else {
         res.redirect('/login');
     }
 });
 app.post('/adminDashboard/:id', function (req, res) {
     if (req.isAuthenticated()) {
-        const id = req.params.id;
-        Donor.findOne({ _id: id }, function (err, foundUser) {
-            if (err) {
-                console.log(err);
-            } else {
-                if (foundUser) {
-                    foundUser.verify = true;
-                    foundUser.save();
-                    res.redirect('/adminDashboard');
+        if (req.user._id == '5fab88c7c9809d9c9c6870fb') {
+            const id = req.params.id;
+            Donor.findOne({ _id: id }, function (err, foundUser) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    if (foundUser) {
+                        foundUser.verify = true;
+                        foundUser.save();
+                        res.redirect('/adminDashboard');
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            res.redirect('/logout');
+        }
+
     } else {
         res.redirect('/login');
     }
 });
 app.post('/rejected/:id', function (req, res) {
     if (req.isAuthenticated()) {
-        const id = req.params.id;
-        Donor.findOne({ _id: id }, function (err, foundUser) {
-            if (err) {
-                console.log(err);
-            } else {
-                if (foundUser) {
-                    foundUser.rejected = true;
-                    foundUser.save();
-                    res.redirect('/adminDashboard');
+        if (req.user._id == '5fab88c7c9809d9c9c6870fb') {
+            const id = req.params.id;
+            Donor.findOne({ _id: id }, function (err, foundUser) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    if (foundUser) {
+                        foundUser.rejected = true;
+                        foundUser.save();
+                        res.redirect('/adminDashboard');
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            res.redirect('/logout');
+        }
+
     } else {
         res.redirect('/login');
     }
 });
 app.post('/donate', uploads, function (req, res, next) {
     if (req.isAuthenticated()) {
-        const id = req.user.username;
-        User.findOne({ username: id }, function (err, foundUser) {
-            if (err) {
-                console.log(err);
-            } else {
-                if (foundUser) {
-                    const newDonor = new Donor({
-                        name: req.body.name,
-                        username: req.body.username,
-                        selected: req.body.gender,
-                        phone: req.body.phone,
-                        address: req.body.address,
-                        postal: req.body.postal,
-                        donation_type: req.body.selected_donation,
-                        image: req.file.filename,
-                        verify: false,
-                        rejected: false
-                    });
-                    newDonor.save();
-                    res.render('confirmation', { name: req.user.name });
+        if (req.user._id != '5fab88c7c9809d9c9c6870fb') {
+            const id = req.user.username;
+            User.findOne({ username: id }, function (err, foundUser) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    if (foundUser) {
+                        const newDonor = new Donor({
+                            name: req.body.name,
+                            username: req.body.username,
+                            selected: req.body.gender,
+                            phone: req.body.phone,
+                            address: req.body.address,
+                            postal: req.body.postal,
+                            donation_type: req.body.selected_donation,
+                            image: req.file.filename,
+                            verify: false,
+                            rejected: false
+                        });
+                        newDonor.save();
+                        res.render('confirmation', { name: req.user.name });
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            res.redirect('/logout');
+        }
+
     } else {
         res.redirect('/login');
     }
