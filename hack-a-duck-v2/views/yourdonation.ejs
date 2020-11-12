@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Admin Portal</title>
+    <title>Donations</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -76,7 +76,7 @@
                                         Donation <%= i+1 %></a></td>
 
                                 <td><span
-                                        class=" status text-<%= user[i].verify==false?'warning':'success' %>">&bull;</span><%= user[i].verify==false?'NO':'YES' %>
+                                        class=" status text-<%= user[i].verify==false?(user[i].rejected==false?'warning':'danger'):'success' %>">&bull;</span><%= user[i].verify==false?(user[i].rejected==false?'pending':'rejected'):'verified' %>
                                 </td>
                             </tr>
                             <% } %>

@@ -1,6 +1,11 @@
 <%- include('partials/header') %>
 
-
+<nav class="navbar navbar-dark bg-primary">
+    <a class="navbar-brand">CROWDFUNDS</a>
+    <form action='/' class="form-inline">
+        <button class="btn btn-dark my-2 my-sm-0" type="submit">Home</button>
+    </form>
+</nav>
 <div class="wrapper">
 
     <form action="/register" method="POST">
@@ -53,7 +58,8 @@
 
             <div class="inputfield">
                 <label>Phone Number</label>
-                <input type="text" class="input" name='phone' required='required'>
+                <input type="text" class="input" name='phone' required='required'
+                    placeholder="with country code ex: +91">
             </div>
             <div class="inputfield terms">
                 <label class="check">
@@ -74,4 +80,5 @@
     </div>
 </div>
 
-<%- include('partials/footer') %>
+
+<%- include('partials/footer') %>ry

@@ -76,7 +76,7 @@
                                 <td><%= users[i].username %></td>
                                 <td><%= users[i].phone %></td>
                                 <td><span
-                                        class=" status text-<%= users[i].verify==false?'warning':'success' %>">&bull;</span><%= users[i].verify==false?'NO':'YES' %>
+                                        class=" status text-<%= users[i].verify==false?(users[i].rejected==false?'warning':'danger'):'success' %>">&bull;</span><%= users[i].verify==false?(users[i].rejected==false?'pending':'rejected'):'verified' %>
                                 </td>
                             </tr>
                             <% } %>
