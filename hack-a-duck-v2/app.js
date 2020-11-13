@@ -196,6 +196,27 @@ app.post('/adminDashboard/:id', function (req, res) {
         res.redirect('/login');
     }
 });
+app.get('/userDashboard/:id', function (req, res) {
+    if (req.isAuthenticated()) {
+        if (req.user._id != '5fab88c7c9809d9c9c6870fb') {
+            const id = req.params.id;
+            Donor.findOne({ _id: id }, function (err, foundUser) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    if (foundUser) {
+                        res.render('donorDetails', { user: foundUser, admin: req.user._id });
+                    }
+                }
+            });
+        } else {
+            res.redirect('/logout');
+        }
+
+    } else {
+        res.redirect('/login');
+    }
+});
 app.post('/rejected/:id', function (req, res) {
     if (req.isAuthenticated()) {
         if (req.user._id == '5fab88c7c9809d9c9c6870fb') {
