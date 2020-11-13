@@ -30,7 +30,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect('mongodb+srv://saketh-admin:test123@cluster0.auzn1.mongodb.net/membersDB', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:3000/membersDB', { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.set("useCreateIndex", true);
 
 var storage = multer.diskStorage({
