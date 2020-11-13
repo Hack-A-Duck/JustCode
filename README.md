@@ -33,19 +33,8 @@ npm i
 
 this may take few minutes.
 
-After installing open the app.js file and search for following command
 
-```bash
-secret: process.env.SECRET1,
-```
-
-and update it to the code below
-
-```bash
-secret: process.env.SECRET1 = 'any string you wish to enter',
-```
-
-after updating the above command open the terminal and type
+after this type the command below in your terminal (ps-node must be installed in your local system)
 
 ```bash
 node app.js
