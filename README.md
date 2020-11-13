@@ -33,6 +33,10 @@ npm i
 
 this may take few minutes.
 
+## Mongodb installation
+install mongodb on your local system if not done before by following this link
+
+<a href='https://docs.mongodb.com/guides/server/install/'>mongodb install guide</a>
 
 after this type the command below in your terminal (ps-node must be installed in your local system)
 
